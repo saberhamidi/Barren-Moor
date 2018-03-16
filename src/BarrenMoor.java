@@ -16,14 +16,10 @@ public class BarrenMoor {
         return player.isWin();
     }
 
-    public void startGame(Player player, Treasure treasure, Compass compass){
-//        for(int i=0; i< infiniteGreySwamp.length; i++){
-//            int[] row = new int[20];
-//            for(int j=0; j< row.length; j++){
-//                row[j] = j;
-//            }
-//            infiniteGreySwamp[i] = row;
-//        }
+    public void startGame(){
+        Player player = new Player("saber", (int) (Math.random()*20), (int) (Math.random()*20));
+        Compass compass = new Compass();
+        Treasure treasure = new Treasure((int) (Math.random()*20), (int) (Math.random()*20));
 
         this.endgame = false;
         System.out.println("You awaken to find yourself in a barren moor!");
@@ -63,12 +59,8 @@ public class BarrenMoor {
     }
 
     public static void main(String[] args){
-
         BarrenMoor myGame = new BarrenMoor();
-        Player player = new Player("saber", 12, 10);
-        Compass compass = new Compass();
-        Treasure treasure = new Treasure(14, 19);
-        myGame.startGame(player, treasure, compass);
+        myGame.startGame();
     }
 
 }
