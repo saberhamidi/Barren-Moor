@@ -2,22 +2,21 @@ import java.util.Scanner;
 
 public class BarrenMoor {
 
-    //protected int[][] infiniteGreySwamp = new int[20][20];
     protected boolean endgame = true;
 
-    public boolean checkIfWin(Player p, Treasure t, Compass c){
-        System.out.println("The dial reads "+c.calculateDistance(t,p)+"m");
-        if(Math.abs(p.getyPostion()-t.getyPostion())+ Math.abs(p.getxPostion()-t.getxPostion()) ==0){
-            p.win = true;
+    public boolean checkIfWin(Player player, Treasure treasure, Compass compass){
+        System.out.println("The dial reads "+compass.calculateDistance(treasure,player)+"m");
+        if(Math.abs(player.getyPostion()-treasure.getyPostion())+ Math.abs(player.getxPostion()-treasure.getxPostion()) ==0){
+            player.win = true;
             this.endgame = true;
             System.out.println("You see a box sitting on the plain.   Its filled with treasure!  You win!");
             System.out.println("The End!");
         }
 
-        return p.isWin();
+        return player.isWin();
     }
 
-    public void startGame(Player p, Treasure t, Compass c){
+    public void startGame(Player player, Treasure treasure, Compass compass){
 //        for(int i=0; i< infiniteGreySwamp.length; i++){
 //            int[] row = new int[20];
 //            for(int j=0; j< row.length; j++){
@@ -34,30 +33,30 @@ public class BarrenMoor {
             command = myScanner.next();
             switch (command.toLowerCase()){
                 case "look":
-                    p.look();
+                    player.look();
                     break;
                 case "north":
-                    p.goNorth();
-                    checkIfWin(p,t,c);
+                    player.goNorth();
+                    checkIfWin(player,treasure,compass);
                     break;
                 case "south":
-                    p.goSouth();
-                    checkIfWin(p,t,c);
+                    player.goSouth();
+                    checkIfWin(player,treasure,compass);
                     break;
                 case "west":
-                    p.goWest();
-                    checkIfWin(p,t,c);
+                    player.goWest();
+                    checkIfWin(player,treasure,compass);
                     break;
                 case "east":
-                    p.goEast();
-                    checkIfWin(p,t,c);
+                    player.goEast();
+                    checkIfWin(player,treasure,compass);
                     break;
                 case "quit":
                     endgame = true;
                     System.out.println("The game ended, treasure not found! hence no win!");
                     break;
                 default:
-                    System.out.println("The command couldn't be recognised. Acceptable commands are: look, north, south, west, east, quit");
+                    System.out.println("The command couldn'treasure be recognised. Acceptable commands are: look, north, south, west, east, quit");
             }
         }
 
@@ -66,10 +65,10 @@ public class BarrenMoor {
     public static void main(String[] args){
 
         BarrenMoor myGame = new BarrenMoor();
-        Player p = new Player("saber", 12, 10);
-        Compass c = new Compass();
-        Treasure t = new Treasure(14, 19);
-        myGame.startGame(p, t, c);
+        Player player = new Player("saber", 12, 10);
+        Compass compass = new Compass();
+        Treasure treasure = new Treasure(14, 19);
+        myGame.startGame(player, treasure, compass);
     }
 
 }
